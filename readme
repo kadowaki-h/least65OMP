@@ -1,0 +1,73 @@
+least65
+openMP version
+
+a fortran90 program of non-linear least squares.
+
+parallel computing from many initial values of fit parameters 
+can be performed using openMP.
+
+Levenberg–Marquardt algorithm
+
+https://en.wikipedia.org/wiki/Non-linear_least_squares
+https://en.wikipedia.org/wiki/Levenberg–Marquardt_algorithm
+https://en.wikipedia.org/wiki/LAPACK
+
+mod_least65_OMP.f90 : fortran90 source code
+ using LAPACK subroutines
+    DGEQP3
+    DORMQR
+    DTRTRS
+    DSYEVR
+
+test_mod_ls65_OMP.f90 : test program
+tsls65_OMP.dat        : test input data
+tsls65_OMP.out4       : test output
+
+
+#####
+HOW TO USE
+ read comment lines in mod_least65_OMP.f90
+   and
+ read test_mod_ls65_OMP.f90
+
+#####
+
+compile and link: 
+ ifort -qopenmp -mkl -static -O -o test_mod_ls65_OMPstatic.ex mod_mt19937ar.f90 mod_least65_OMP.f90 test_mod_ls65_OMP.f90
+
+run:
+export OMP_NUM_THREADS=4
+time ./test_mod_ls65_OMPstatic.ex < tsls65_OMP.dat > tsls65_OMP.out4
+
+
+compile and link: 
+ ifort -qopenmp -mkl -O -o test_mod_ls65_OMP.ex mod_mt19937ar.f90 mod_least65_OMP.f90 test_mod_ls65_OMP.f90
+
+export OMP_NUM_THREADS=4
+time ./test_mod_ls65_OMP.ex < tsls65_OMP.dat > tsls65_OMP.out4
+
+#####
+Ubuntu 16.04
+core i7 8700K
+
+export OMP_NUM_THREADS=4
+time ./test_mod_ls65_OMPstatic.ex < tsls65_OMP.dat > tsls65_OMP.out4
+
+real	0m33.764s
+user	2m4.003s
+sys	0m0.100s
+
+
+#####
+Cisco UCS B200 M4
+INTEL E5-2643 v4(3.40GHz)  x6􏱅􏲾 x2CPU
+Red Hat Enterprise Linux v7.3
+
+export OMP_NUM_THREADS=4
+time ./test_mod_ls65_OMP.ex < tsls65_OMP.dat > tsls65_OMP.out4
+
+real	1m14.987s
+user	4m31.671s
+sys	0m0.356s
+
+

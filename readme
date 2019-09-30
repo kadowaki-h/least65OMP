@@ -1,7 +1,7 @@
 least65
 openMP version
 
-a fortran90 program of non-linear least squares.
+a fortran90 program of nonlinear least squares.
 
 parallel computing from many initial values of fit parameters 
 can be performed using openMP.

@@ -6,7 +6,7 @@ a fortran90 program of nonlinear least squares.
 parallel computing from many initial values of fit parameters 
 can be performed using openMP.
 
-Levenberg–Marquardt algorithm
+Levenberg-Marquardt algorithm
 
 https://en.wikipedia.org/wiki/Non-linear_least_squares
 https://en.wikipedia.org/wiki/Levenberg–Marquardt_algorithm
